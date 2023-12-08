@@ -12,15 +12,15 @@ set(carve_VERSION_PATCH 0a)
 set(CARVE_VERSION ${carve_VERSION_MAJOR}.${carve_VERSION_MINOR}.${carve_VERSION_PATCH})
 
 option(BUILD_COVERAGE                    "Compile with gcov"                                 OFF)
-option(BUILD_SHARED_LIBS                 "Compile libcarve as shared"                        ON)
-option(CARVE_WITH_GUI                    "Compile gui code"                                  ON)
+option(BUILD_SHARED_LIBS                 "Compile libcarve as shared"                        OFF)
+option(CARVE_WITH_GUI                    "Compile gui code"                                  OFF)
 option(CARVE_SYSTEM_BOOST                "Compile with system installed boost"               ON)
 option(CARVE_BOOST_COLLECTIONS           "Compile with boost collections"                    ON)
 option(CARVE_DEBUG                       "Compile in debug code"                             OFF)
 option(CARVE_DEBUG_WRITE_PLY_DATA        "Write geometry output during debug"                OFF)
 option(CARVE_USE_EXACT_PREDICATES        "Use Shewchuk's exact predicates, where possible"   OFF)
 option(CARVE_INTERSECT_GLU_TRIANGULATOR  "Include support for GLU triangulator in intersect" OFF)
-option(CARVE_GTEST_TESTS                 "Complie gtest, and dependent tests"                ON)
+option(CARVE_GTEST_TESTS                 "Complie gtest, and dependent tests"                OFF)
 
 if (MSVC)
   # For MSVC, CMake sets certain flags to defaults we want to override.
@@ -55,6 +55,7 @@ if(WIN32)
   set(BUILD_SHARED_LIBS OFF) # until everything is exported
   add_definitions(-D_USE_MATH_DEFINES)
   add_definitions(-DNOMINMAX)
+  add_definitions(-D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING)
 endif(WIN32)
 
 find_package(OpenMP)
@@ -157,7 +158,7 @@ configure_file (
   "${carve_SOURCE_DIR}/include/carve/cmake-config.h.in"
   "${carve_BINARY_DIR}/include/carve/config.h"
 )
-add_definitions(-DCMAKE_BUILD)
+#add_definitions(-DCMAKE_BUILD)
 
 include_directories(${carve_BINARY_DIR}/include)
 
