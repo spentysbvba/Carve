@@ -31,6 +31,8 @@ add_library(carve
             triangle_intersection.cpp
             shewchuk_predicates.cpp)
 
+set_property(TARGET carve PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
 set_target_properties(carve PROPERTIES
                       VERSION   "${carve_VERSION_MAJOR}.${carve_VERSION_MINOR}.${carve_VERSION_PATCH}"
                       SOVERSION "${carve_VERSION_MAJOR}.${carve_VERSION_MINOR}")

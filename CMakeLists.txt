@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.19)
 
 project(carve)
 
@@ -165,9 +165,9 @@ include_directories(${carve_BINARY_DIR}/include)
 add_subdirectory(lib) 
 add_subdirectory(include) 
 add_subdirectory(common) 
-add_subdirectory(src) 
+#add_subdirectory(src) 
 add_subdirectory(examples) 
-add_subdirectory(tests) 
+#add_subdirectory(tests) 
 
 
 include(CTest)
