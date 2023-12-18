@@ -307,7 +307,7 @@ namespace {
                              face_set_t &faces) {
     carve::csg::detail::VEVecMap::const_iterator vi = ve.find(v);
     if (vi != ve.end()) {
-      for (carve::csg::detail::VEVecMap::data_type::const_iterator i = (*vi).second.begin(); i != (*vi).second.end(); ++i) {
+      for (carve::csg::detail::VEVecMap::mapped_type::const_iterator i = (*vi).second.begin(); i != (*vi).second.end(); ++i) {
         faces.insert((*i)->face);
       }
     }
@@ -640,7 +640,7 @@ void carve::csg::CSG::intersectingFacePairs(detail::Data &data) {
     detail::VFSMap::mapped_type src_face_set;
     detail::VFSMap::mapped_type tgt_face_set;
     // for all pairs of intersecting objects at this point
-    for (VertexIntersections::data_type::const_iterator j = (*i).second.begin(), je = (*i).second.end(); j != je; ++j) {
+    for (VertexIntersections::mapped_type::const_iterator j = (*i).second.begin(), je = (*i).second.end(); j != je; ++j) {
       const IObj &i_src = ((*j).first);
       const IObj &i_tgt = ((*j).second);
 
