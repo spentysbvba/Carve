@@ -20,4 +20,18 @@
 #include <unordered_map>
 #include <unordered_set>
 
+namespace std {
+  template <typename A, typename B>
+  struct hash<std::pair<A, B> > : public std::unary_function<std::pair<A, B>, size_t> {
+    size_t operator()(const std::pair<A, B> &v) const {
+      std::size_t seed = 0;
+
+      seed ^= hash<A>()(v.first);
+      seed ^= hash<B>()(v.second) + (seed<<6) + (seed>>2);
+
+      return seed;
+    }
+  };
+}
+
 #undef UNORDERED_COLLECTIONS_SUPPORT_RESIZE
