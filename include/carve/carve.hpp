@@ -32,11 +32,11 @@
 #  include <carve/gnu_cxx.h>
 #endif
 
-//#if defined(CARVE_SYSTEM_BOOST)
+#if defined(CARVE_SYSTEM_BOOST)
 #  define BOOST_INCLUDE(x) <boost/x>
-//#else
-//#  define BOOST_INCLUDE(x) <carve/external/boost/x>
-//#endif
+#else
+#  define BOOST_INCLUDE(x) <carve/external/boost/x>
+#endif
 
 #include <math.h>
 
